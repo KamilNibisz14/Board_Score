@@ -1,4 +1,3 @@
-import 'package:board_score/services/games-service.dart';
 import 'package:flutter/material.dart';
 import '../models/game.dart';
 import 'game_tile.dart';
@@ -16,17 +15,14 @@ class GameList extends StatelessWidget {
       child: GridView.builder(
         gridDelegate:
         const SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 1 / 2,
+            childAspectRatio: 1/2,
             crossAxisCount: 2,
             crossAxisSpacing: 20),
         itemCount: gameList.length,
         itemBuilder: (buildContext, index) {
           return GameTile(
-              gameName: gameList[index].name,
-              image: Image.network(
-                gameList[index].imageUrl,
-                errorBuilder: (_, __, ___) => Image.network('https://zwierzetarnia.pl/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'),
-                ),);
+            gameData: gameList[index],
+          );
         },
       ),
     );
