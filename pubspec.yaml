@@ -37,6 +37,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_dotenv: ^5.0.2
+  bloc: ^8.1.0
+  equatable: ^2.0.5
+  flutter_bloc: ^8.1.1
+  hydrated_bloc: ^8.1.0
+  path_provider: ^2.0.11
+  rxdart: ^0.27.5
 
 dev_dependencies:
   flutter_test:
