@@ -1,4 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/game_list_bloc.dart';
 
 class SearchTextField extends StatefulWidget {
   const SearchTextField({Key? key}) : super(key: key);
@@ -23,7 +28,6 @@ class _SearchTextFieldState extends State<SearchTextField> with SingleTickerProv
     animation = Tween<double>(begin: 0, end: 180).animate(curvedAnimation)..addListener(() { setState(() {
 
     });});
-
     super.initState();
   }
 
@@ -35,6 +39,8 @@ class _SearchTextFieldState extends State<SearchTextField> with SingleTickerProv
     double containerWidth = screenHeight/ 2;
     Color textFieldColor = Theme.of(context).bottomAppBarColor;
     double IconContainer = containerHeight;
+    Timer? _denounc;
+    String searchText = "";
     return Container(
       margin: EdgeInsets.only(top: containerHeight*0.75),
       height: containerHeight,
@@ -54,6 +60,16 @@ class _SearchTextFieldState extends State<SearchTextField> with SingleTickerProv
             child: Padding(
               padding: EdgeInsets.only(left: 20, bottom: 5),
               child: TextField(
+                onChanged: (value){
+                  if(_denounc?.isActive ?? false)_denounc?.cancel();
+                  _denounc = Timer(
+                      const Duration(milliseconds: 500),(){
+                    if(searchText != value || value == ''){
+                      context.read<GameListBloc>().add(SearchEvent(text: value));
+                    }
+                    searchText = value;
+                  });
+                  },
                 cursorColor: Colors.white12,
                 style: TextStyle(
                   color: Colors.white,

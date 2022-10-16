@@ -1,9 +1,20 @@
 import 'package:board_score/screens/main_screen.dart';
+import 'package:board_score/services/games-service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'bloc/game_list_bloc.dart';
+
+void main() async {
+  await dotenv.load(fileName: ".env");
+  runApp(
+    BlocProvider<GameListBloc>(
+        create: (context) => GameListBloc(GamesService()),
+        child: const MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       title: 'Score Board',
-      home: MainPage(),
+      home: const MainPage(),
     );
   }
 }
