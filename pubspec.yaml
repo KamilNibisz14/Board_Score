@@ -42,7 +42,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   hydrated_bloc: ^8.1.0
   path_provider: ^2.0.11
-  rxdart: ^0.27.5
+  html: ^0.15.0
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +69,7 @@ flutter:
 
   assets:
     - .env
+    - img/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

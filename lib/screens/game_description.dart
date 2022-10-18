@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:html/parser.dart';
 
 import '../models/game.dart';
 import '../widgets/icon_description_widget.dart';
@@ -14,6 +15,13 @@ class GameDescription extends StatelessWidget {
     double appBarFontSize = screenWidth / 18;
     double titleFontSize = screenWidth / 15;
     double descriptionFontSize = screenWidth / 22;
+
+    String _parseHtmlString(String htmlString) {
+      final document = parse(htmlString);
+      final String parsedString = parse(document.body?.text).documentElement!.text;
+
+      return parsedString;
+    }
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -93,9 +101,9 @@ class GameDescription extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 30, left: 20, right: 20),
+                      padding: EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 40),
                       child: Text(
-                        gameData.description.substring(3, gameData.description.length - 4),
+                        _parseHtmlString(gameData.description),
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                           fontSize: descriptionFontSize,

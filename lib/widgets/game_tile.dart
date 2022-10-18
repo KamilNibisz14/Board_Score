@@ -30,7 +30,7 @@ class GameTile extends StatelessWidget {
               child: Container(
                 child: Image.network(
                   gameData.imageUrl,
-                  errorBuilder: (_, __, ___) => Image.network('https://zwierzetarnia.pl/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'),
+                  errorBuilder: (_, __, ___) => Image(image: AssetImage('img/error_img.png')) //Image.network('https://zwierzetarnia.pl/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'),
                 ),
               ))),
         Expanded(

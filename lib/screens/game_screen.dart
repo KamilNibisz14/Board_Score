@@ -1,6 +1,7 @@
 import 'package:board_score/models/game.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/player_data.dart';
 import 'game_description.dart';
 
 class GameScreen extends StatelessWidget {
@@ -51,18 +52,13 @@ class GameScreen extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: (){
-                      print(gameData.year_published);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => GameDescription(gameData: gameData,),
+                        ),
+                      );
                     },
-                    child: GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => GameDescription(gameData: gameData,),
-                          ),
-                        );
-                      },
-                      child: Icon(Icons.info_outline, size: iconSize,
-                      ),
+                    child: Icon(Icons.info_outline, size: iconSize,
                     ),
                   ),
                 ],
@@ -72,6 +68,14 @@ class GameScreen extends StatelessWidget {
           Expanded(
             flex: 6,
             child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 20),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    PlayerData(name: "Kamil", points: 4,),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
