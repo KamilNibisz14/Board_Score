@@ -4,11 +4,7 @@ import '../models/game.dart';
 import '../screens/game_screen.dart';
 
 class GameTile extends StatelessWidget {
-  GameTile({
-    Key? key,
-    required this.gameData
-  })
-      : super(key: key);
+  GameTile({Key? key, required this.gameData}) : super(key: key);
 
   Game gameData;
 
@@ -20,19 +16,20 @@ class GameTile extends StatelessWidget {
       children: [
         Expanded(
             child: InkWell(
-              onTap: (){
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => GameScreen(gameData: gameData,),
-                  ),
-                );
-              },
-              child: Container(
-                child: Image.network(
-                  gameData.imageUrl,
-                  errorBuilder: (_, __, ___) => Image(image: AssetImage('img/error_img.png')) //Image.network('https://zwierzetarnia.pl/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'),
-                ),
-              ))),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => GameScreen(
+                        gameData: gameData,
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  child: Image.network(gameData.imageUrl,
+                      errorBuilder: (_, __, ___) =>
+                          Image(image: AssetImage('img/error_img.png'))),
+                ))),
         Expanded(
             child: Text(
           gameData.name,
