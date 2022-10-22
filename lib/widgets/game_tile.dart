@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/game_score_bloc.dart';
 import '../models/game.dart';
 import '../screens/game_screen.dart';
 
@@ -16,11 +18,14 @@ class GameTile extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double fontSize = screenWidth / 25;
+    return BlocBuilder<GameScoreBloc, GameScoreState>(
+        builder: (context, state) {
     return Column(
       children: [
         Expanded(
             child: InkWell(
               onTap: (){
+                context.read<GameScoreBloc>().add(SearchGameIndex(gameID: gameData.id));
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => GameScreen(gameData: gameData,),
@@ -39,6 +44,6 @@ class GameTile extends StatelessWidget {
           style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
         )),
       ],
-    );
+    );});
   }
 }

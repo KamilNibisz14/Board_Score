@@ -21,7 +21,7 @@ class _SearchTextFieldState extends State<SearchTextField> with SingleTickerProv
   void initState() {
 
     animationController = AnimationController(
-      duration: Duration(milliseconds: 1000), vsync: this);
+      duration: const Duration(milliseconds: 1000), vsync: this);
 
     final curvedAnimation= CurvedAnimation(parent: animationController, curve: Curves.easeOutExpo);
 
@@ -33,12 +33,11 @@ class _SearchTextFieldState extends State<SearchTextField> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     double containerHeight = screenHeight/ 20;
     double containerWidth = screenHeight/ 2;
     Color textFieldColor = Theme.of(context).bottomAppBarColor;
-    double IconContainer = containerHeight;
+    double iconContainer = containerHeight;
     Timer? _denounc;
     String searchText = "";
     return Container(
@@ -52,13 +51,13 @@ class _SearchTextFieldState extends State<SearchTextField> with SingleTickerProv
             width: animation.value,
             decoration: BoxDecoration(
               color: textFieldColor,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(50),
                 bottomLeft: Radius.circular(50),
               )
             ),
             child: Padding(
-              padding: EdgeInsets.only(left: 20, bottom: 5),
+              padding: const EdgeInsets.only(left: 20, bottom: 5),
               child: TextField(
                 onChanged: (value){
                   if(_denounc?.isActive ?? false)_denounc?.cancel();
@@ -71,21 +70,21 @@ class _SearchTextFieldState extends State<SearchTextField> with SingleTickerProv
                   });
                   },
                 cursorColor: Colors.white12,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none
                 ),
               ),
             ),
           ),
           Container(
-            width: IconContainer,
-            height: IconContainer,
+            width: iconContainer,
+            height: iconContainer,
             decoration: BoxDecoration(
               color: textFieldColor,
-              borderRadius:animation.value > 1?  BorderRadius.only(
+              borderRadius:animation.value > 1?  const BorderRadius.only(
                 topLeft: Radius.circular(0),
                 bottomLeft: Radius.circular(0),
                 bottomRight: Radius.circular(50),
@@ -93,7 +92,7 @@ class _SearchTextFieldState extends State<SearchTextField> with SingleTickerProv
               ): BorderRadius.circular(50)
             ),
             child: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.search,
                 color: Colors.white,
               ),

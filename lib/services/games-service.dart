@@ -8,7 +8,7 @@ class GamesService {
   Future<List<Game>> fetchGames() async {
     final response = await http.get(Uri.parse(
         '${_apiUrl}search?limit=100&client_id=${dotenv.env['BOARD_GAME_ATLAS_SECRET_API_KEY']}'));
-
+    print(response.statusCode);
     if (response.statusCode == 200) {
       Iterable decodedGames = json.decode(response.body)['games'];
       return List<Game>.from(decodedGames.map((g) => Game.fromJson(g)));
@@ -17,3 +17,4 @@ class GamesService {
     }
   }
 }
+//vlqQ6YAvgg
