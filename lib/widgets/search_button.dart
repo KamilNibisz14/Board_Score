@@ -12,36 +12,38 @@ class SearchTextField extends StatefulWidget {
   State<SearchTextField> createState() => _SearchTextFieldState();
 }
 
-class _SearchTextFieldState extends State<SearchTextField> with SingleTickerProviderStateMixin{
+class _SearchTextFieldState extends State<SearchTextField>
+    with SingleTickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController animationController;
   bool isForward = false;
 
   @override
   void initState() {
-
     animationController = AnimationController(
       duration: const Duration(milliseconds: 1000), vsync: this);
 
-    final curvedAnimation= CurvedAnimation(parent: animationController, curve: Curves.easeOutExpo);
+    final curvedAnimation =
+        CurvedAnimation(parent: animationController, curve: Curves.easeOutExpo);
 
-    animation = Tween<double>(begin: 0, end: 180).animate(curvedAnimation)..addListener(() { setState(() {
-
-    });});
+    animation = Tween<double>(begin: 0, end: 180).animate(curvedAnimation)
+      ..addListener(() {
+        setState(() {});
+      });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    double containerHeight = screenHeight/ 20;
-    double containerWidth = screenHeight/ 2;
+    double containerHeight = screenHeight / 20;
+    double containerWidth = screenHeight / 2;
     Color textFieldColor = Theme.of(context).bottomAppBarColor;
     double iconContainer = containerHeight;
     Timer? _denounc;
     String searchText = "";
     return Container(
-      margin: EdgeInsets.only(top: containerHeight*0.75),
+      margin: EdgeInsets.only(top: containerHeight * 0.75),
       height: containerHeight,
       width: containerWidth,
       child: Row(
@@ -59,16 +61,17 @@ class _SearchTextFieldState extends State<SearchTextField> with SingleTickerProv
             child: Padding(
               padding: const EdgeInsets.only(left: 20, bottom: 5),
               child: TextField(
-                onChanged: (value){
-                  if(_denounc?.isActive ?? false)_denounc?.cancel();
-                  _denounc = Timer(
-                      const Duration(milliseconds: 500),(){
-                    if(searchText != value || value == ''){
-                      context.read<GameListBloc>().add(SearchEvent(text: value));
+                onChanged: (value) {
+                  if (_denounc?.isActive ?? false) _denounc?.cancel();
+                  _denounc = Timer(const Duration(milliseconds: 500), () {
+                    if (searchText != value || value == '') {
+                      context
+                          .read<GameListBloc>()
+                          .add(SearchEvent(search: value));
                     }
                     searchText = value;
                   });
-                  },
+                },
                 cursorColor: Colors.white12,
                 style: const TextStyle(
                   color: Colors.white,
@@ -96,11 +99,11 @@ class _SearchTextFieldState extends State<SearchTextField> with SingleTickerProv
                 Icons.search,
                 color: Colors.white,
               ),
-              onPressed: (){
-                if(!isForward){
+              onPressed: () {
+                if (!isForward) {
                   animationController.forward();
                   isForward = true;
-                }else{
+                } else {
                   animationController.reverse();
                   isForward = false;
                 }

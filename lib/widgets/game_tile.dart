@@ -6,11 +6,7 @@ import '../models/game.dart';
 import '../screens/game_screen.dart';
 
 class GameTile extends StatelessWidget {
-  GameTile({
-    Key? key,
-    required this.gameData
-  })
-      : super(key: key);
+  GameTile({Key? key, required this.gameData}) : super(key: key);
 
   Game gameData;
 
