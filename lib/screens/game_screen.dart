@@ -92,21 +92,7 @@ class GameScreen extends StatelessWidget {
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                   child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 15),
-                          child: Text(
-                            'leading:  ${state.gameData!.winner}',
-                            textAlign: TextAlign.left,
-                            style:
-                            TextStyle(fontSize: leadingPlayerNameFontSize),
-                          ),
-                        ),
-                        PlayerListView(),
-                      ],
-                    ),
+                    child: PlayerListView()
                   ),
                 ),
               ),

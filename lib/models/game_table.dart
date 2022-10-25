@@ -6,7 +6,7 @@ class PlayerData{
 }
 class GameTable{
   final String id;
-  final String winner = '';
+  String winner = '';
   final List<PlayerData> players = [];
   GameTable({required this.id,});
 }

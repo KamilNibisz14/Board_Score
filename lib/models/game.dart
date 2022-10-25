@@ -2,13 +2,13 @@ class Game {
   final String id;
   final String name;
   final String imageUrl;
-  final int min_players;
-  final int max_players;
-  final int min_playtime;
-  final int max_playtime;
-  final int min_age;
-  final int year_published;
-  final String description;
+  final int ?min_players;
+  final int ?max_players;
+  final int ?min_playtime;
+  final int ?max_playtime;
+  final int ?min_age;
+  final int ?year_published;
+  final String ?description;
   const Game({
     required this.id,
     required this.name,

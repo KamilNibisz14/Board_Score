@@ -64,10 +64,8 @@ class _SearchTextFieldState extends State<SearchTextField>
                 onChanged: (value) {
                   if (_denounc?.isActive ?? false) _denounc?.cancel();
                   _denounc = Timer(const Duration(milliseconds: 500), () {
-                    if (searchText != value || value == '') {
-                      context
-                          .read<GameListBloc>()
-                          .add(SearchEvent(search: value));
+                    if ((searchText != value && value.length> 3) || value == '') {
+                      context.read<GameListBloc>().add(SearchEvent(search: value));
                     }
                     searchText = value;
                   });
