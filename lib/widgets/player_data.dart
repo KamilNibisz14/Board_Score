@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CurrentPlayerData extends StatefulWidget {
-  CurrentPlayerData({Key? key,required this.playerData, this.isBorder}) : super(key: key);
+  CurrentPlayerData({Key? key,required this.playerData, this.isBorder, required this.notifyParent}) : super(key: key);
 
+  VoidCallback notifyParent;
   bool? isBorder;
   PlayerData playerData;
 
@@ -56,11 +57,13 @@ class _CurrentPlayerDataState extends State<CurrentPlayerData> {
                 InkWell(
                   onTap: (){
                     setState(() {
+                      widget.notifyParent();
                       context.read<GameScoreBloc>().add(AddPoints(playerData: widget.playerData));
                     });
                   },
                   onLongPress: (){
                     setState(() {
+                      widget.notifyParent();
                       context.read<GameScoreBloc>().add(RemovePoint(playerData: widget.playerData));
                     });
                   },

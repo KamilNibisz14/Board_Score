@@ -68,15 +68,15 @@ class GameDescription extends StatelessWidget {
                         Expanded(
                           child: IconDescriptionWidget(
                             icon: Icons.person,
-                            value1: gameData.min_players,
-                            value2: gameData.max_players,
+                            value1: gameData.min_players == null ? 0 : gameData.min_players!,
+                            value2: gameData.max_players == null ? 0 : gameData.max_players!,
                           )
                         ),
                         Expanded(
                           child: IconDescriptionWidget(
                             icon: Icons.access_time_rounded,
-                            value1: gameData.min_playtime,
-                            value2: gameData.max_playtime,
+                            value1: gameData.min_playtime == null ? 0 : gameData.min_playtime!,
+                            value2: gameData.max_playtime == null ? 0 : gameData.max_playtime!,
                           )
                         )
                       ],
@@ -88,13 +88,13 @@ class GameDescription extends StatelessWidget {
                           Expanded(
                               child: IconDescriptionWidget(
                                 icon: Icons.calendar_today,
-                                value1: gameData.year_published,
+                                value1: gameData.year_published == null ? 0 : gameData.year_published!,
                               )
                           ),
                           Expanded(
                               child: IconDescriptionWidget(
                                 icon: Icons.child_care,
-                                value1: gameData.min_age,
+                                value1: gameData.min_age == null? 0:gameData.min_age! ,
                               )
                           )
                         ],
@@ -103,7 +103,7 @@ class GameDescription extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 40),
                       child: Text(
-                        _parseHtmlString(gameData.description),
+                        _parseHtmlString(gameData.description == null ? " ":gameData.description! ),
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                           fontSize: descriptionFontSize,

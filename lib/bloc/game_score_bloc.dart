@@ -45,7 +45,7 @@ class GameScoreBloc extends Bloc<GameScoreEvent, GameScoreState> {
     gamePlayerData!.players.remove(player);
     player.points++;
     gamePlayerData.players.insert(index, player);
-
+    winning();
     emit(GameScoreState(gameData:gamePlayerData));
 
   }
@@ -60,14 +60,26 @@ class GameScoreBloc extends Bloc<GameScoreEvent, GameScoreState> {
       player.points--;
     }
     gamePlayerData.players.insert(index, player);
-
+    winning();
     emit(GameScoreState(gameData:gamePlayerData));
 
   }
   void _onDeletePlayer(DeletePlayer event, Emitter<GameScoreState> emit){
     event.playerData;
     gameData[currentIndex].players..remove(event.playerData);
+    winning();
     emit(GameScoreState(gameData:gameData[currentIndex]));
+  }
+  void winning(){
+    int max = 0;
+    String playerName = '';
+    for(int i = 0; i < gameData[currentIndex].players.length; ++i){
+      if(gameData[currentIndex].players[i].points > max){
+        max = gameData[currentIndex].players[i].points;
+        playerName =  gameData[currentIndex].players[i].name;
+      }
+    }
+    gameData[currentIndex].winner = playerName;
   }
 
 
