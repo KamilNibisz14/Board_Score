@@ -5,22 +5,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'bloc/game_list_bloc.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider<GameListBloc>(
-        create: (context) => GameListBloc(GamesService()),
-      ),
-      BlocProvider<GameScoreBloc>(
-        create: (context) => GameScoreBloc(),
-      ),
-    ],
-    child: const MyApp(),
-  ));
+  final storage = await HydratedStorage.build(
+    storageDirectory: await getApplicationDocumentsDirectory(),
+  );
+  HydratedBlocOverrides.runZoned(
+      () => runApp(MultiBlocProvider(
+            providers: [
+              BlocProvider<GameListBloc>(
+                create: (context) => GameListBloc(GamesService()),
+              ),
+              BlocProvider<GameScoreBloc>(
+                create: (context) => GameScoreBloc(),
+              ),
+            ],
+            child: const MyApp(),
+          )),
+      storage: storage);
 }
 
 class MyApp extends StatelessWidget {
