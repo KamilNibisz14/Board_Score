@@ -53,34 +53,52 @@ class GameScreen extends StatelessWidget {
           ),
           body: Column(
             children: [
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                child: Text(
+                  gameData.name,
+                  style: TextStyle(
+                    fontSize: titleFontSize, letterSpacing: 1.2,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                  child: Container(
+                    margin: EdgeInsets.only(top: 30,bottom: 0),
+                    child: Image.network(
+                              gameData.imageUrl,
+                              errorBuilder: (_, __, ___) => Image(image: AssetImage('img/error_img.png')) //Image.network('https://zwierzetarnia.pl/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'),
+                            ),
+                  ),
+              ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.only(left: 10),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
                         width: textContainerWidth,
-                        child: Text(
-                          gameData.name,
-                          style: TextStyle(
-                              fontSize: titleFontSize, letterSpacing: 1.2),
-                        ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => GameDescription(
-                                gameData: gameData,
+                      Container(
+                        margin: EdgeInsets.only(top: 10, right: 10),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => GameDescription(
+                                  gameData: gameData,
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        child: Icon(
-                          Icons.info_outline,
-                          size: iconSize,
+                            );
+                          },
+                          child: Icon(
+                            Icons.info_outline,
+                            size: iconSize,
+                          ),
                         ),
                       ),
                     ],

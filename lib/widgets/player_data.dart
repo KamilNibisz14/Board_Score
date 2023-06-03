@@ -15,7 +15,7 @@ class CurrentPlayerData extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double playerNameFontSize = screenWidth / 24;
     double playerDataContainerWidth = screenWidth * 0.9;
-    Color buttonColor = Theme.of(context).bottomAppBarColor;
+    Color buttonColor = Theme.of(context).primaryColor;
     return BlocBuilder<GameScoreBloc, GameScoreState>(
         builder: (context, state) {
       return Container(
@@ -23,9 +23,7 @@ class CurrentPlayerData extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
         decoration: BoxDecoration(
             border: Border(
-                bottom: isBorder == false
-                    ? const BorderSide(color: Colors.transparent, width: 0)
-                    : const BorderSide(color: Color(0xFFfcfcfc), width: 1))),
+                bottom: BorderSide(color: Colors.black26, width: 1))),
         child: Row(
           children: [
             Expanded(
@@ -63,8 +61,16 @@ class CurrentPlayerData extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: buttonColor,
+                         boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 4,
+                            blurRadius: 7,
+                            offset: Offset(3, 3),
+                          ),
+                        ],
                       ),
-                      child: const Icon(Icons.add),
+                      child: const Icon(Icons.add, color: Colors.white,),
                     ),
                   )
                 ],

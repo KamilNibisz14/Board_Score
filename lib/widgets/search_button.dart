@@ -38,7 +38,7 @@ class _SearchTextFieldState extends State<SearchTextField>
     double screenHeight = MediaQuery.of(context).size.height;
     double containerHeight = screenHeight / 20;
     double containerWidth = screenHeight / 2;
-    Color textFieldColor = Theme.of(context).bottomAppBarColor;
+    Color textFieldColor = Theme.of(context).primaryColor;
     double iconContainer = containerHeight;
     Timer? _denounc;
     String searchText = "";

@@ -39,7 +39,9 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-      theme: ThemeData.dark(),
+      theme: ThemeData.light().copyWith(
+        scaffoldBackgroundColor:  Colors.white
+      ),
       debugShowCheckedModeBanner: false,
       title: 'Score Board',
       home: const MainPage(),

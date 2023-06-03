@@ -20,27 +20,33 @@ class PlayerListView extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 15),
             child: Text(
               'leading:  ${state.gameData[state.currentIndex].winner}',
+
               textAlign: TextAlign.left,
-              style: TextStyle(fontSize: leadingPlayerNameFontSize),
+              style: TextStyle(fontSize: leadingPlayerNameFontSize,
+                fontWeight: FontWeight.bold
+              ),
             ),
           ),
-          ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: state.gameData[state.currentIndex].players.length,
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onLongPress: () {
-                    context.read<GameScoreBloc>().add(DeletePlayer(
-                        playerData:
-                            state.gameData[state.currentIndex].players[index]));
-                  },
-                  child: CurrentPlayerData(
-                    playerData:
-                        state.gameData[state.currentIndex].players[index],
-                  ),
-                );
-              }),
+          Container(
+            child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: state.gameData[state.currentIndex].players.length,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onLongPress: () {
+                      context.read<GameScoreBloc>().add(DeletePlayer(
+                          playerData:
+                              state.gameData[state.currentIndex].players[index]));
+                    },
+                    child: CurrentPlayerData(
+                      playerData:
+                          state.gameData[state.currentIndex].players[index],
+                    ),
+                  );
+                }
+              ),
+          ),
         ],
       );
     });
